@@ -1,0 +1,19 @@
+{
+  "name": "gss2css",
+  "version": "0.0.0",
+  "description": "GSS to CSS precompiler",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/the-gss/gss2css.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/the-gss/gss2css/issues"
+  },
+  "homepage": "https://github.com/the-gss/gss2css"
+}
