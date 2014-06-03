@@ -12,8 +12,23 @@ exports.open = function (url, callback) {
       page.onError = function (msg, trace) {
         console.log(msg);
       };
+
+      var checkReady = function () {
+        page.evaluate(function () {
+          return GSS.isDisplayed;
+        }, function (err, res) {
+          if (res) {
+            return callback(null, page);
+          }
+          setTimeout(checkReady, 10);
+        });
+      };
+
       page.open(url, function (err, status) {
-        callback(err, page, ph);
+        if (err) {
+          return callback(err);
+        }
+        checkReady();
       });
     });
   },
@@ -27,7 +42,9 @@ exports.resize = function (page, values, callback) {
     if (err) {
       return callback(err);
     }
-    callback(null, page);
+    setTimeout(function () {
+      callback(null, page);
+    }, 100);
   });
 };
 

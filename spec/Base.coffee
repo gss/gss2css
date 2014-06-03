@@ -15,31 +15,27 @@ describe 'communicating with a web page', ->
       chai.expect(page).to.be.an 'object'
       done()
   it 'should be able to talk to GSS on the page', (done) ->
-    setTimeout ->
+    page.evaluate ->
+      GSS.engines[0].vars
+    , (err, result) ->
+      chai.expect(result).to.be.an 'object'
+      chai.expect(result['::window[width]']).to.be.a 'number'
+      chai.expect(result['$hello[width]']).to.equal 200
+      chai.expect(result['$hello[x]']).to.equal 92
+      done()
+  it 'after resizing the values should have changed', (done) ->
+    lib.resize page,
+      width: 800
+      height: 600
+    , (err, page) ->
       page.evaluate ->
         GSS.engines[0].vars
       , (err, result) ->
         chai.expect(result).to.be.an 'object'
         chai.expect(result['::window[width]']).to.be.a 'number'
         chai.expect(result['$hello[width]']).to.equal 200
-        chai.expect(result['$hello[x]']).to.equal 92
+        chai.expect(result['$hello[x]']).to.equal 292
         done()
-    , 1000
-  it 'after resizing the values should have changed', (done) ->
-    lib.resize page,
-      width: 800
-      height: 600
-    , (err, page) ->
-      setTimeout ->
-        page.evaluate ->
-          GSS.engines[0].vars
-        , (err, result) ->
-          chai.expect(result).to.be.an 'object'
-          chai.expect(result['::window[width]']).to.be.a 'number'
-          chai.expect(result['$hello[width]']).to.equal 200
-          chai.expect(result['$hello[x]']).to.equal 292
-          done()
-      , 1000
   it 'should be able to remove GSS from page', (done) ->
     replacer = /[\n\s"']*/g
     expected = fs.readFileSync path.resolve(__dirname, 'fixtures/base_removed.html'), 'utf-8'
