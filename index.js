@@ -35,10 +35,10 @@ exports.removeGss = function (page, callback) {
   var html = page;
   var window = jsdom.jsdom(html).createWindow();
 
-  // Remove inline GSS
-  var inlines = window.document.querySelectorAll('style[type="text/gss"]');
-  Array.prototype.slice.call(inlines).forEach(function (inline) {
-    inline.parentNode.removeChild(inline);
+  // Remove inline and linked GSS
+  var styles = window.document.querySelectorAll('[type="text/gss"]');
+  Array.prototype.slice.call(styles).forEach(function (style) {
+    style.parentNode.removeChild(style);
   });
 
   // Remove GSS engine
