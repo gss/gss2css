@@ -148,9 +148,9 @@ exports.gss2css = function (page, options, callback) {
         if (options.sizes.length) {
           var next = options.sizes[0];
           if (previous) {
-          css += "@media (min-width: " + size.width + "px) and (max-width: " + next.width + "px) { " + vals + " }\n";
+          css += "@media (min-width: " + size.width + "px) and (max-width: " + (next.width-1) + "px) { " + vals + " }\n";
           } else {
-            css += "@media (max-width: " + next.width + "px) { " + vals + " }\n";
+            css += "@media (max-width: " + (next.width-1) + "px) { " + vals + " }\n";
           }
           previous = size;
           sizeToCss();
