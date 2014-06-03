@@ -9,6 +9,12 @@ module.exports = ->
         options:
           copy: false
 
+    # Local web server for testing purposes
+    connect:
+      server:
+        options:
+          port: 8002
+
     # BDD tests on Node.js
     cafemocha:
       nodejs:
@@ -17,6 +23,7 @@ module.exports = ->
           reporter: 'spec'
 
   @loadNpmTasks 'grunt-bower-task'
+  @loadNpmTasks 'grunt-contrib-connect'
   @loadNpmTasks 'grunt-cafe-mocha'
 
   # Local tasks
@@ -25,4 +32,5 @@ module.exports = ->
 
   @registerTask 'test', =>
     @task.run 'build'
+    @task.run 'connect'
     @task.run 'cafemocha'
