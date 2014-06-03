@@ -15,6 +15,6 @@
     "tests"
   ],
   "dependencies": {
-    "gss": "~1.0.4-beta"
+    "gss": "latest"
   }
 }
