@@ -64,6 +64,21 @@ describe 'communicating with a web page', ->
     replacer = /[\n\s"']*/g
     expected = fs.readFileSync path.resolve(__dirname, 'fixtures/base/compiled.html'), 'utf-8'
     expected = expected.replace replacer, ''
-    lib.gss2css page, (err, html) ->
+    config =
+      sizes:[
+        # iPhone portrait
+        width: 310
+        height: 352
+      ,
+        # iPad landscape
+        width: 1010
+        height: 660
+      ,
+        # Larger
+        width: 1405
+        height: 680
+      ]
+    lib.gss2css page, config, (err, html) ->
+      fs.writeFileSync path.resolve(__dirname, 'fixtures/base/compiled.html'), html
       chai.expect(html.replace(replacer, '')).to.equal expected
       done()

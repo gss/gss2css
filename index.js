@@ -121,18 +121,52 @@ exports.injectCss = function (page, css, callback) {
   callback(null, window.document.doctype + "\n" + window.document.innerHTML);
 };
 
-exports.gss2css = function (page, callback) {
-  page.evaluate(function () {
-    return GSS.printCss();
-  }, function (err, css) {
-    if (err) {
-      return callback(err);
-    }
+exports.gss2css = function (page, options, callback) {
+  if (!callback) {
+    callback = options;
+    options = {};
+  }
+  var css = "\n";
+
+  // Once we're done we can send the CSS
+  var send = function (css) {
     exports.removeGss(page, function (err, cleaned) {
       if (err) {
         return callback(err);
       }
       exports.injectCss(cleaned, css, callback);
     });
-  });
+  };
+
+  var previous = null;
+  var sizeToCss = function () {
+    var size = options.sizes.shift();
+    exports.resize(page, size, function (err, page) {
+      page.evaluate(function () {
+        return GSS.printCss();
+      }, function (err, vals) {
+        if (options.sizes.length) {
+          var next = options.sizes[0];
+          if (previous) {
+          css += "@media (min-width: " + size.width + "px) and (max-width: " + next.width + "px) { " + vals + " }\n";
+          } else {
+            css += "@media (max-width: " + next.width + "px) { " + vals + " }\n";
+          }
+          previous = size;
+          sizeToCss();
+        } else {
+          css += "@media (min-width: " + size.width + "px) { " + vals + " }\n";
+          return send(css);
+        }
+      });
+    });
+  };
+
+  if (!options.sizes) {
+    options.sizes = [{
+      width: 800,
+      height: 600
+    }];
+  }
+  sizeToCss();
 };
