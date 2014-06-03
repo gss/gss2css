@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "node-phantom-ws": "^1.0.10",
-    "phantomjs": "^1.9.7-8"
+    "phantomjs": "^1.9.7-8",
+    "jsdom": "^0.10.6"
   }
 }

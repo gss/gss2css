@@ -1,4 +1,5 @@
 var phantom = require('node-phantom-ws');
+var jsdom = require('jsdom');
 exports.open = function (url, callback) {
   phantom.create(function (err, ph) {
     if (err) {
@@ -19,4 +20,42 @@ exports.open = function (url, callback) {
   {
     phantomPath: require('phantomjs').path
   });
+};
+
+exports.removeGss = function (page, callback) {
+  if (typeof page == 'object') {
+    page.get('content', function (err, html) {
+      if (err) {
+        return callback(err);
+      }
+      exports.removeGss(html, callback);
+    });
+    return;
+  }
+  var html = page;
+  var window = jsdom.jsdom(html).createWindow();
+
+  // Remove inline GSS
+  var inlines = window.document.querySelectorAll('style[type="text/gss"]');
+  Array.prototype.slice.call(inlines).forEach(function (inline) {
+    inline.parentNode.removeChild(inline);
+  });
+
+  // Remove GSS engine
+  var scripts = window.document.querySelectorAll('script[src]');
+  Array.prototype.slice.call(scripts).forEach(function (script) {
+    if (script.src.indexOf('gss.js') === -1) {
+      return;
+    }
+    script.parentNode.removeChild(script);
+  });
+
+  // Remove GSS IDs
+  var targets = window.document.querySelectorAll('[data-gss-id]');
+  Array.prototype.slice.call(targets).forEach(function (target) {
+    target.removeAttribute('style');
+    target.removeAttribute('data-gss-id');
+  });
+
+  callback(null, window.document.doctype + "\n" + window.document.innerHTML);
 };

@@ -1,5 +1,7 @@
 chai = require 'chai'
 lib = require '../index'
+fs = require 'fs'
+path = require 'path'
 baseUrl = 'http://localhost:8002'
 describe 'communicating with a web page', ->
   page = null
@@ -20,3 +22,11 @@ describe 'communicating with a web page', ->
         chai.expect(result['$hello[width]']).to.equal 200
         done()
     , 1000
+  it 'should be able to remove GSS from page', (done) ->
+    replacer = /[\n\s"']*/g
+    expected = fs.readFileSync path.resolve(__dirname, 'fixtures/base_removed.html'), 'utf-8'
+    expected = expected.replace replacer, ''
+    lib.removeGss page, (err, cleaned) ->
+      cleaned = cleaned.replace replacer, ''
+      chai.expect(cleaned).to.equal expected
+      done()
