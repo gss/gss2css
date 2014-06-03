@@ -59,7 +59,7 @@ exports.resize = function (page, values, callback) {
     }
     setTimeout(function () {
       callback(null, page);
-    }, 100);
+    }, 500);
   });
 };
 
