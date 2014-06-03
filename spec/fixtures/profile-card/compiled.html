@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="en" class="wf-inactive gss-cond-28 gss-ready"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GSS - Responsive Profile Card</title>
+    <meta name="description" content="GSS demo of per-element responsiveness and source order independence.">
+    <!-- Adobe TypeKit -->
+    <script type="text/javascript" src="//use.typekit.net/dhj3zwu.js"></script>
+    <style type="text/css">.tk-adelle{font-family:"adelle",serif;}.tk-proxima-nova-soft{font-family:"proxima-nova-soft",sans-serif;}</style><script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="texture.css">
+    
+    <!-- GSS -->
+    <script>
+      GSS_CONFIG = {
+        useWorker: true,
+        worker: "/bower_components/gss/dist/worker.js",
+        fractionalPixels: false,
+        resizeDebounce: 16, 
+        debug: false,
+        verticalScroll: false
+      }
+    </script>
+        
+  <style>
+@media (max-width: 1009px) {
+  #profile-card{-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 103, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 113, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 320, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 292, 183, 0, 1);}
+  #follow{-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 258, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 385, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 540, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 123, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1010px) and (max-width: 1404px) {
+  #profile-card{-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 208, 240, 0, 1);width:594px;height:180px;border-radius:20px;}
+  #cover{-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 218, 23, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 425, 63, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 397, 243, 0, 1);}
+  #follow{-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 363, 363, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 490, 363, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 645, 363, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 228, 363, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1405px) {
+  #profile-card{-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 240, 240, 0, 1);width:925px;height:200px;border-radius:20px;}
+  #cover{-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 250, 43, 0, 1);border-radius:10px;width:905px;height:320px;}
+  #avatar{-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 623, 83, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 595, 263, 0, 1);}
+  #follow{-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 649, 383, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 853, 383, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1008, 383, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 260, 383, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+</style></head>
+  <body>
+    <div id="background"></div>
+    <div id="profile-card"></div>
+    <div id="cover"></div>
+    <div id="avatar"></div>
+    <h1 id="name">Dan Daniels</h1>
+    <button id="follow" class="primary">Follow</button>
+    <button id="following">Following</button>
+    <button id="followers">Followers</button>
+    <button id="message">Message</button>
+  
+
+</body></html>
