@@ -60,3 +60,10 @@ describe 'communicating with a web page', ->
       injected = injected.replace replacer, ''
       chai.expect(injected).to.equal expected
       done()
+  it 'should be able to precompile to CSS', (done) ->
+    replacer = /[\n\s"']*/g
+    expected = fs.readFileSync path.resolve(__dirname, 'fixtures/base/compiled.html'), 'utf-8'
+    expected = expected.replace replacer, ''
+    lib.gss2css page, (err, html) ->
+      chai.expect(html.replace(replacer, '')).to.equal expected
+      done()

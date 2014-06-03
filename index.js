@@ -120,3 +120,19 @@ exports.injectCss = function (page, css, callback) {
 
   callback(null, window.document.doctype + "\n" + window.document.innerHTML);
 };
+
+exports.gss2css = function (page, callback) {
+  page.evaluate(function () {
+    return GSS.printCss();
+  }, function (err, css) {
+    if (err) {
+      return callback(err);
+    }
+    exports.removeGss(page, function (err, cleaned) {
+      if (err) {
+        return callback(err);
+      }
+      exports.injectCss(cleaned, css, callback);
+    });
+  });
+};
