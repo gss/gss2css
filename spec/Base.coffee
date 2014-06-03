@@ -61,6 +61,7 @@ describe 'communicating with a web page', ->
       chai.expect(injected).to.equal expected
       done()
   it 'should be able to precompile to CSS', (done) ->
+    @timeout 0
     replacer = /[\n\s"']*/g
     expected = fs.readFileSync path.resolve(__dirname, 'fixtures/base/compiled.html'), 'utf-8'
     expected = expected.replace replacer, ''

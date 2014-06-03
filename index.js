@@ -145,17 +145,18 @@ exports.gss2css = function (page, options, callback) {
       page.evaluate(function () {
         return GSS.printCss();
       }, function (err, vals) {
+        vals = vals.replace(/}/g, '}\n  ');
         if (options.sizes.length) {
           var next = options.sizes[0];
           if (previous) {
-          css += "@media (min-width: " + size.width + "px) and (max-width: " + (next.width-1) + "px) { " + vals + " }\n";
+          css += "\n@media (min-width: " + size.width + "px) and (max-width: " + (next.width-1) + "px) {\n  " + vals + "\n}\n";
           } else {
-            css += "@media (max-width: " + (next.width-1) + "px) { " + vals + " }\n";
+            css += "@media (max-width: " + (next.width-1) + "px) {\n  " + vals + "\n}\n";
           }
           previous = size;
           sizeToCss();
         } else {
-          css += "@media (min-width: " + size.width + "px) { " + vals + " }\n";
+          css += "\n@media (min-width: " + size.width + "px) {\n  " + vals + "\n}\n";
           return send(css);
         }
       });
