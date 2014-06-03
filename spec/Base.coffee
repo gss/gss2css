@@ -8,7 +8,7 @@ describe 'communicating with a web page', ->
   page = null
   after -> phantom.exit() if phantom
   it 'should be able to open a page', (done) ->
-    lib.open "#{baseUrl}/spec/fixtures/base.html",
+    lib.open "#{baseUrl}/spec/fixtures/base/original.html",
       width: 600
     , (err, p, ph) ->
       phantom = ph
@@ -40,7 +40,7 @@ describe 'communicating with a web page', ->
         done()
   it 'should be able to remove GSS from page', (done) ->
     replacer = /[\n\s"']*/g
-    expected = fs.readFileSync path.resolve(__dirname, 'fixtures/base_removed.html'), 'utf-8'
+    expected = fs.readFileSync path.resolve(__dirname, 'fixtures/base/removed.html'), 'utf-8'
     expected = expected.replace replacer, ''
     lib.removeGss page, (err, cleaned) ->
       cleaned = cleaned.replace replacer, ''
@@ -48,8 +48,8 @@ describe 'communicating with a web page', ->
       done()
   it 'should be able to inject CSS into the page', (done) ->
     replacer = /[\n\s"']*/g
-    original = fs.readFileSync path.resolve(__dirname, 'fixtures/base_removed.html'), 'utf-8'
-    expected = fs.readFileSync path.resolve(__dirname, 'fixtures/base_injected.html'), 'utf-8'
+    original = fs.readFileSync path.resolve(__dirname, 'fixtures/base/removed.html'), 'utf-8'
+    expected = fs.readFileSync path.resolve(__dirname, 'fixtures/base/injected.html'), 'utf-8'
     expected = expected.replace replacer, ''
     css = """
     #hello {
