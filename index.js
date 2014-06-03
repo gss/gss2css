@@ -1,6 +1,16 @@
 var phantom = require('node-phantom-ws');
 var jsdom = require('jsdom');
-exports.open = function (url, callback) {
+exports.open = function (url, options, callback) {
+  if (!callback) {
+    callback = options;
+    options = {};
+  }
+  if (!options.width) {
+    options.width = 800;
+  }
+  if (!options.height) {
+    options.height = 600;
+  }
   phantom.create(function (err, ph) {
     if (err) {
       return callback(err);
@@ -9,26 +19,31 @@ exports.open = function (url, callback) {
       if (err) {
         return callback(err);
       }
-      page.onError = function (msg, trace) {
-        console.log(msg);
-      };
+      page.set('viewportSize', {
+        width: options.width,
+        height: options.height
+      }, function (err) {
+        page.onError = function (msg, trace) {
+          console.log(msg);
+        };
 
-      var checkReady = function () {
-        page.evaluate(function () {
-          return GSS.isDisplayed;
-        }, function (err, res) {
-          if (res) {
-            return callback(null, page);
+        var checkReady = function () {
+          page.evaluate(function () {
+            return GSS.isDisplayed;
+          }, function (err, res) {
+            if (res) {
+              return callback(null, page);
+            }
+            setTimeout(checkReady, 10);
+          });
+        };
+
+        page.open(url, function (err, status) {
+          if (err) {
+            return callback(err);
           }
-          setTimeout(checkReady, 10);
+          checkReady();
         });
-      };
-
-      page.open(url, function (err, status) {
-        if (err) {
-          return callback(err);
-        }
-        checkReady();
       });
     });
   },

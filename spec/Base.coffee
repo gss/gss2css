@@ -8,7 +8,9 @@ describe 'communicating with a web page', ->
   page = null
   after -> phantom.exit() if phantom
   it 'should be able to open a page', (done) ->
-    lib.open "#{baseUrl}/spec/fixtures/base.html", (err, p, ph) ->
+    lib.open "#{baseUrl}/spec/fixtures/base.html",
+      width: 600
+    , (err, p, ph) ->
       phantom = ph
       page = p
       chai.expect(err).to.be.a 'null'
@@ -21,7 +23,7 @@ describe 'communicating with a web page', ->
       chai.expect(result).to.be.an 'object'
       chai.expect(result['::window[width]']).to.be.a 'number'
       chai.expect(result['$hello[width]']).to.equal 200
-      chai.expect(result['$hello[x]']).to.equal 92
+      chai.expect(result['$hello[x]']).to.equal 192
       done()
   it 'after resizing the values should have changed', (done) ->
     lib.resize page,
