@@ -85,3 +85,23 @@ exports.removeGss = function (page, callback) {
 
   callback(null, window.document.doctype + "\n" + window.document.innerHTML);
 };
+
+exports.injectCss = function (page, css, callback) {
+  if (typeof page == 'object') {
+    page.get('content', function (err, html) {
+      if (err) {
+        return callback(err);
+      }
+      exports.injectCss(html, css, callback);
+    });
+    return;
+  }
+  var html = page;
+  var window = jsdom.jsdom(html).createWindow();
+
+  var style = window.document.createElement('style');
+  style.textContent = css;
+  window.document.head.appendChild(style);
+
+  callback(null, window.document.doctype + "\n" + window.document.innerHTML);
+};

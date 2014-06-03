@@ -44,3 +44,17 @@ describe 'communicating with a web page', ->
       cleaned = cleaned.replace replacer, ''
       chai.expect(cleaned).to.equal expected
       done()
+  it 'should be able to inject CSS into the page', (done) ->
+    replacer = /[\n\s"']*/g
+    original = fs.readFileSync path.resolve(__dirname, 'fixtures/base_removed.html'), 'utf-8'
+    expected = fs.readFileSync path.resolve(__dirname, 'fixtures/base_injected.html'), 'utf-8'
+    expected = expected.replace replacer, ''
+    css = """
+    #hello {
+      color: red;
+    }
+    """
+    lib.injectCss original, css, (err, injected) ->
+      injected = injected.replace replacer, ''
+      chai.expect(injected).to.equal expected
+      done()
