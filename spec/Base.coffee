@@ -79,6 +79,6 @@ describe 'communicating with a web page', ->
         height: 680
       ]
     lib.gss2css page, config, (err, html) ->
-      fs.writeFileSync path.resolve(__dirname, 'fixtures/base/compiled.html'), html
+      #fs.writeFileSync path.resolve(__dirname, 'fixtures/base/compiled.html'), html
       chai.expect(html.replace(replacer, '')).to.equal expected
       done()
