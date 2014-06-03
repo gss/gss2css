@@ -13,12 +13,21 @@ exports.open = function (url, callback) {
         console.log(msg);
       };
       page.open(url, function (err, status) {
-        callback(err, page);
+        callback(err, page, ph);
       });
     });
   },
   {
     phantomPath: require('phantomjs').path
+  });
+};
+
+exports.resize = function (page, values, callback) {
+  page.set('viewportSize', values, function (err) {
+    if (err) {
+      return callback(err);
+    }
+    callback(null, page);
   });
 };
 
