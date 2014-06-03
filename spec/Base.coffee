@@ -17,5 +17,6 @@ describe 'communicating with a web page', ->
       , (err, result) ->
         chai.expect(result).to.be.an 'object'
         chai.expect(result['::window[width]']).to.be.a 'number'
+        chai.expect(result['$hello[width]']).to.equal 200
         done()
     , 1000
