@@ -6,3 +6,11 @@ before_install:
 before_script:
 - npm install -g grunt-cli
 script: npm test
+deploy:
+  provider: npm
+  email: henri.bergius@iki.fi
+  api_key:
+    secure: GMPapgETG7u8m3IMdy5iQBqncDp7PMUA3aseJgW3Wn9Y5CAKvsuWMwdj1YOWQO9HrPAhRNEOiGVBY1HQ6e/cLPjCRYh9ur8JXU4Envje2tvzT29kIs9SK9e67zL50NLtvgYVAnfY7vzoF0KspCswQQNdOvxQaBUmnvhdMX/5AAQ=
+  on:
+    tags: true
+    repo: the-gss/gss2css

@@ -121,9 +121,57 @@ exports.injectCss = function (page, css, callback) {
   callback(null, window.document.doctype + "\n" + window.document.innerHTML);
 };
 
+function rangeSteps (sizes, dimension, range) {
+  var newSizes = [];
+  var size;
+  if (typeof range === 'number') {
+    if (sizes.length) {
+      sizes.forEach(function (size) {
+        size[dimension] = range;
+        newSizes.push(size);
+      });
+      return newSizes;
+    }
+    size = {};
+    size[dimension] = range;
+    newSizes.push(size);
+    return newSizes;
+  }
+  var now = range.from;
+  if (!range.step) {
+    range.step = 10;
+  }
+  while (now <= range.to) {
+    if (sizes.length) {
+      for (var i = 0; i < sizes.length; i++) {
+        size = JSON.parse(JSON.stringify(sizes[i]));
+        size[dimension] = now;
+        newSizes.push(size);
+      }
+    } else {
+      size = {};
+      size[dimension] = now;
+      newSizes.push(size);
+    }
+    now += range.step;
+  }
+  return newSizes;
+}
+
 exports.normalizeOptions = function (options) {
   if (options.ranges) {
-    options.sizes = [];
+    if (!options.ranges.width) {
+      options.ranges.width = 800;
+    }
+    if (!options.ranges.height) {
+      options.ranges.width = 600;
+    }
+    var sizes = [];
+    sizes = rangeSteps(sizes, 'width', options.ranges.width);
+    sizes = rangeSteps(sizes, 'height', options.ranges.height);
+    delete options.ranges;
+    options.sizes = sizes;
+    return options;
   }
   if (!options.sizes) {
     options.sizes = [{
