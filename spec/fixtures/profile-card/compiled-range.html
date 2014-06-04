@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+
+<html lang="en" class="wf-inactive gss-cond-28 gss-ready"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GSS - Responsive Profile Card</title>
+    <meta name="description" content="GSS demo of per-element responsiveness and source order independence.">
+    <!-- Adobe TypeKit -->
+    <script type="text/javascript" src="//use.typekit.net/dhj3zwu.js"></script>
+    <style type="text/css">.tk-adelle{font-family:"adelle",serif;}.tk-proxima-nova-soft{font-family:"proxima-nova-soft",sans-serif;}</style><script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="texture.css">
+    
+    <!-- GSS -->
+    <script>
+      GSS_CONFIG = {
+        useWorker: true,
+        worker: "/bower_components/gss/dist/worker.js",
+        fractionalPixels: false,
+        resizeDebounce: 16, 
+        debug: false,
+        verticalScroll: false
+      }
+    </script>
+        
+  <style>
+@media (max-width: 409px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -97, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -87, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 120, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 92, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 58, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 185, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 340, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -77, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 410px) and (max-width: 419px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -92, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -82, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 125, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 97, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 63, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 190, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 345, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -72, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 420px) and (max-width: 429px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -87, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -77, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 130, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 102, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 68, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 195, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 350, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -67, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 430px) and (max-width: 439px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -82, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -72, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 135, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 107, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 73, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 200, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 355, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -62, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 440px) and (max-width: 449px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -77, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -67, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 140, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 112, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 78, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 205, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 360, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -57, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 450px) and (max-width: 459px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -72, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -62, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 145, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 117, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 83, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 210, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 365, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -52, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 460px) and (max-width: 469px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -67, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -57, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 150, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 122, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 88, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 215, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 370, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -47, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 470px) and (max-width: 479px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -62, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -52, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 155, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 127, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 93, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 220, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 375, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -42, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 480px) and (max-width: 489px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -57, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -47, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 160, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 132, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 98, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 225, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 380, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -37, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 490px) and (max-width: 499px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -52, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -42, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 165, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 137, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 103, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 230, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 385, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -32, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 500px) and (max-width: 509px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -47, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -37, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 170, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 142, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 108, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 235, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 390, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -27, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 510px) and (max-width: 519px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -42, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -32, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 175, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 147, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 113, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 240, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 395, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -22, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 520px) and (max-width: 529px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -37, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -27, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 180, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 152, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 118, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 245, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 400, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -17, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 530px) and (max-width: 539px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -32, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -22, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 185, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 157, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 123, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 250, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 405, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -12, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 540px) and (max-width: 549px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -27, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -17, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 190, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 162, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 128, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 255, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 410, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -7, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 550px) and (max-width: 559px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -22, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -12, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 195, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 167, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 133, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 260, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 415, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -2, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 560px) and (max-width: 569px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -17, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -7, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 200, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 172, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 138, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 265, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 420, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 3, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 570px) and (max-width: 579px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -12, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -2, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 205, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 177, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 143, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 270, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 425, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 8, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 580px) and (max-width: 589px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -7, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 3, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 210, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 182, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 148, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 275, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 430, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 590px) and (max-width: 599px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -2, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 8, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 215, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 187, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 153, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 280, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 435, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 18, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 600px) and (max-width: 609px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 3, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 13, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 220, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 192, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 158, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 285, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 440, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 23, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 610px) and (max-width: 619px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 8, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 18, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 225, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 197, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 163, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 290, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 445, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 28, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 620px) and (max-width: 629px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 13, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 23, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 230, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 202, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 168, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 295, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 450, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 33, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 630px) and (max-width: 639px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 18, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 28, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 235, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 207, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 173, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 300, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 455, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 38, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 640px) and (max-width: 649px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 23, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 33, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 240, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 212, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 178, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 305, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 460, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 43, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 650px) and (max-width: 659px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 28, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 38, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 245, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 217, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 183, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 310, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 465, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 48, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 660px) and (max-width: 669px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 33, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 43, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 250, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 222, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 188, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 315, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 470, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 53, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 670px) and (max-width: 679px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 38, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 48, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 255, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 227, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 193, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 320, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 475, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 58, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 680px) and (max-width: 689px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 43, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 53, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 260, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 232, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 198, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 325, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 480, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 63, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 690px) and (max-width: 699px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 48, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 58, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 265, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 237, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 203, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 330, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 485, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 68, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 700px) and (max-width: 709px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 53, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 63, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 270, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 242, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 208, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 335, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 490, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 73, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 710px) and (max-width: 719px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 58, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 68, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 275, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 247, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 213, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 340, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 495, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 78, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 720px) and (max-width: 729px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 63, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 73, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 280, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 252, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 218, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 345, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 500, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 83, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 730px) and (max-width: 739px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 68, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 78, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 285, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 257, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 223, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 350, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 505, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 88, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 740px) and (max-width: 749px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 73, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 83, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 290, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 262, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 228, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 355, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 510, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 93, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 750px) and (max-width: 759px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 78, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 88, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 295, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 267, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 233, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 360, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 515, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 98, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 760px) and (max-width: 769px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 83, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 93, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 300, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 272, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 238, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 365, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 520, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 103, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 770px) and (max-width: 779px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 88, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 98, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 305, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 277, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 243, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 370, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 525, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 108, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 780px) and (max-width: 789px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 93, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 103, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 310, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 282, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 248, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 375, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 530, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 113, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 790px) and (max-width: 799px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 98, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 108, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 315, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 287, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 253, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 380, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 535, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 118, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 800px) and (max-width: 809px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 103, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 113, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 320, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 292, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 258, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 385, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 540, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 123, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 810px) and (max-width: 819px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 108, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 118, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 325, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 297, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 263, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 390, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 545, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 128, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 820px) and (max-width: 829px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 113, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 123, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 330, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 302, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 268, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 395, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 550, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 133, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 830px) and (max-width: 839px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 118, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 128, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 335, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 307, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 273, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 400, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 555, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 138, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 840px) and (max-width: 849px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 123, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 133, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 340, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 312, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 278, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 405, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 560, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 143, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 850px) and (max-width: 859px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 128, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 138, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 345, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 317, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 283, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 410, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 565, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 148, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 860px) and (max-width: 869px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 133, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 143, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 350, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 322, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 288, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 415, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 570, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 153, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 870px) and (max-width: 879px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 138, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 148, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 355, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 327, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 293, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 420, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 575, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 158, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 880px) and (max-width: 889px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 143, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 153, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 360, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 332, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 298, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 425, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 580, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 163, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 890px) and (max-width: 899px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 148, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 158, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 365, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 337, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 303, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 430, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 585, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 168, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 900px) and (max-width: 909px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 153, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 163, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 370, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 342, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 308, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 435, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 590, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 173, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 910px) and (max-width: 919px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 158, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 168, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 375, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 347, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 313, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 440, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 595, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 178, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 920px) and (max-width: 929px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 163, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 173, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 380, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 352, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 318, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 445, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 600, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 183, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 930px) and (max-width: 939px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 168, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 178, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 385, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 357, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 323, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 450, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 605, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 188, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 940px) and (max-width: 949px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 173, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 183, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 390, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 362, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 328, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 455, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 610, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 193, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 950px) and (max-width: 959px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 178, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 188, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 395, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 367, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 333, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 460, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 615, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 198, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 960px) and (max-width: 969px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 183, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 193, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 400, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 372, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 338, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 465, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 620, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 203, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 970px) and (max-width: 979px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 188, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 198, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 405, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 377, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 343, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 470, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 625, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 208, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 980px) and (max-width: 989px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 193, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 203, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 410, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 382, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 348, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 475, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 630, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 213, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 990px) and (max-width: 999px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 198, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 208, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 415, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 387, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 353, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 480, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 635, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 218, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1000px) and (max-width: 1009px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 203, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 213, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 420, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 392, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 358, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 485, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 640, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 223, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1010px) and (max-width: 1019px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 208, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 218, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 425, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 397, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 363, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 490, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 645, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 228, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1020px) and (max-width: 1029px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 213, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 223, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 430, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 402, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 368, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 495, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 650, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 233, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1030px) and (max-width: 1039px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 218, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 228, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 435, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 407, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 373, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 500, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 655, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 238, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1040px) and (max-width: 1049px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 223, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 233, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 440, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 412, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 378, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 505, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 660, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 243, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1050px) and (max-width: 1059px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 228, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 238, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 445, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 417, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 383, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 510, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 665, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 248, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1060px) and (max-width: 1069px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 233, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 243, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 450, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 422, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 388, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 515, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 670, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 253, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1070px) and (max-width: 1079px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 238, 240, 0, 1);width:594px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 248, -37, 0, 1);border-radius:10px;width:574px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 455, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 427, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 393, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 520, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 675, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 258, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1080px) and (max-width: 1089px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 240, 240, 0, 1);width:600px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 250, -37, 0, 1);border-radius:10px;width:580px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 460, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 432, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 401, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 528, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 683, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 260, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1090px) and (max-width: 1099px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 240, 240, 0, 1);width:610px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 250, -37, 0, 1);border-radius:10px;width:590px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 465, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 437, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 411, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 538, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 693, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 260, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1100px) and (max-width: 1109px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 240, 240, 0, 1);width:620px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 250, -37, 0, 1);border-radius:10px;width:600px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 470, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 442, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 421, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 548, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 703, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 260, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1110px) and (max-width: 1119px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 240, 240, 0, 1);width:630px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 250, -37, 0, 1);border-radius:10px;width:610px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 475, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 447, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 431, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 558, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 713, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 260, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1120px) and (max-width: 1129px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 240, 240, 0, 1);width:640px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 250, -37, 0, 1);border-radius:10px;width:620px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 480, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 452, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 441, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 568, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 723, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 260, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1130px) and (max-width: 1139px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 240, 240, 0, 1);width:650px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 250, -37, 0, 1);border-radius:10px;width:630px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 485, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 457, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 451, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 578, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 733, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 260, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1140px) and (max-width: 1149px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 240, 240, 0, 1);width:660px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 250, -37, 0, 1);border-radius:10px;width:640px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 490, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 462, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 461, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 588, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 743, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 260, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1150px) and (max-width: 1159px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 240, 240, 0, 1);width:670px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 250, -37, 0, 1);border-radius:10px;width:650px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 495, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 467, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 471, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 598, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 753, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 260, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1160px) and (max-width: 1169px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 240, 240, 0, 1);width:680px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 250, -37, 0, 1);border-radius:10px;width:660px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 500, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 472, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 481, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 608, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 763, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 260, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1170px) and (max-width: 1179px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 240, 240, 0, 1);width:690px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 250, -37, 0, 1);border-radius:10px;width:670px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 505, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 477, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 491, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 618, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 773, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 260, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1180px) and (max-width: 1189px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 240, 240, 0, 1);width:700px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 250, -37, 0, 1);border-radius:10px;width:680px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 510, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 482, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 501, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 628, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 783, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 260, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1190px) and (max-width: 1199px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 240, 240, 0, 1);width:710px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 250, -37, 0, 1);border-radius:10px;width:690px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 515, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 487, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 511, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 638, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 793, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 260, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1200px) and (max-width: 1209px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 240, 240, 0, 1);width:720px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 250, -37, 0, 1);border-radius:10px;width:700px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 520, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 492, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 521, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 648, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 803, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 260, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1210px) and (max-width: 1219px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 240, 240, 0, 1);width:730px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 250, -37, 0, 1);border-radius:10px;width:710px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 525, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 497, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 531, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 658, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 813, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 260, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1220px) and (max-width: 1229px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 240, 240, 0, 1);width:740px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 250, -37, 0, 1);border-radius:10px;width:720px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 530, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 502, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 541, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 668, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 823, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 260, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1230px) and (max-width: 1239px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 240, 240, 0, 1);width:750px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 250, -37, 0, 1);border-radius:10px;width:730px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 535, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 507, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 551, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 678, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 833, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 260, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1240px) and (max-width: 1249px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 240, 240, 0, 1);width:760px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 250, -37, 0, 1);border-radius:10px;width:740px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 540, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 512, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 561, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 688, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 843, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 260, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1250px) and (max-width: 1259px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 240, 240, 0, 1);width:770px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 250, -37, 0, 1);border-radius:10px;width:750px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 545, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 517, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 571, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 698, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 853, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 260, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1260px) and (max-width: 1269px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 240, 240, 0, 1);width:780px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 250, -37, 0, 1);border-radius:10px;width:760px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 550, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 522, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 577, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 708, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 863, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 260, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1270px) and (max-width: 1279px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 240, 240, 0, 1);width:790px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 250, -37, 0, 1);border-radius:10px;width:770px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 555, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 527, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 582, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 718, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 873, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 260, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1280px) and (max-width: 1289px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 240, 240, 0, 1);width:800px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 250, -37, 0, 1);border-radius:10px;width:780px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 560, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 532, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 587, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 728, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 883, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 260, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1290px) and (max-width: 1299px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 240, 240, 0, 1);width:810px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 250, -37, 0, 1);border-radius:10px;width:790px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 565, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 537, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 592, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 738, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 893, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 260, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+
+@media (min-width: 1300px) {
+  #profile-card{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 240, 240, 0, 1);width:820px;height:120px;border-radius:20px;}
+  #cover{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 250, -37, 0, 1);border-radius:10px;width:800px;height:320px;}
+  #avatar{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 570, 3, 0, 1);height:160px;width:160px;border-radius:80px;}
+  #name{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 542, 183, 0, 1);}
+  #follow{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 597, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #following{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 748, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #followers{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 903, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  #message{position:absolute;margin:0px;top:0px;left:0px;-webkit-transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 260, 303, 0, 1);padding:20px;padding-top:10px;padding-bottom:10px;border-radius:10px;}
+  
+}
+</style></head>
+  <body>
+    <div id="background"></div>
+    <div id="profile-card"></div>
+    <div id="cover"></div>
+    <div id="avatar"></div>
+    <h1 id="name">Dan Daniels</h1>
+    <button id="follow" class="primary">Follow</button>
+    <button id="following">Following</button>
+    <button id="followers">Followers</button>
+    <button id="message">Message</button>
+  
+
+</body></html>
