@@ -1,6 +1,6 @@
 {
   "name": "gss2css",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "GSS to CSS precompiler",
   "main": "index.js",
   "scripts": {
