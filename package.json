@@ -15,6 +15,13 @@
   "bugs": {
     "url": "https://github.com/the-gss/gss2css/issues"
   },
+  "keywords": [
+    "gruntplugin",
+    "gss",
+    "gridstylesheets",
+    "css",
+    "precompiler"
+  ],
   "homepage": "https://github.com/the-gss/gss2css",
   "devDependencies": {
     "grunt": "^0.4.5",
