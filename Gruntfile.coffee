@@ -40,6 +40,12 @@ module.exports = ->
           rename: (dest, src) -> src.replace 'original', 'grunt'
         ]
 
+    # Coding standards checking
+    jshint:
+      lib:
+        files:
+          src: ['index.js']
+
     # BDD tests on Node.js
     cafemocha:
       nodejs:
@@ -50,6 +56,7 @@ module.exports = ->
   @loadTasks 'tasks'
   @loadNpmTasks 'grunt-bower-task'
   @loadNpmTasks 'grunt-contrib-connect'
+  @loadNpmTasks 'grunt-contrib-jshint'
   @loadNpmTasks 'grunt-cafe-mocha'
 
   # Local tasks
@@ -57,6 +64,7 @@ module.exports = ->
     @task.run 'bower:install'
 
   @registerTask 'test', =>
+    @task.run 'jshint'
     @task.run 'build'
     @task.run 'connect'
     @task.run 'gss_to_css'

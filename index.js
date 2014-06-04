@@ -59,7 +59,7 @@ exports.resize = function (page, values, callback) {
     }
     setTimeout(function () {
       callback(null, page);
-    }, 500);
+    }, 100);
   });
 };
 
@@ -121,6 +121,19 @@ exports.injectCss = function (page, css, callback) {
   callback(null, window.document.doctype + "\n" + window.document.innerHTML);
 };
 
+exports.normalizeOptions = function (options) {
+  if (options.ranges) {
+    options.sizes = [];
+  }
+  if (!options.sizes) {
+    options.sizes = [{
+      width: 800,
+      height: 600
+    }];
+  }
+  return options;
+};
+
 exports.gss2css = function (page, options, callback) {
   if (!callback) {
     callback = options;
@@ -162,12 +175,6 @@ exports.gss2css = function (page, options, callback) {
       });
     });
   };
-
-  if (!options.sizes) {
-    options.sizes = [{
-      width: 800,
-      height: 600
-    }];
-  }
+  options = exports.normalizeOptions(options);
   sizeToCss();
 };
