@@ -5,6 +5,42 @@ This project provides both a [Node.js](http://nodejs.org/) library and a [Grunt]
 
 gss2css utilizes [PhantomJS](http://phantomjs.org/) for rendering the existing GSS layout in various screen sizes and producing the appropriate CSS rules and media queries for those.
 
+## Node.js module
+
+It is possible to run GSS-to-CSS precompilation as a Node.js library in your custom tooling. Example:
+
+```js
+// Load the NPM module
+var precompiler = require('gss-to-css');
+
+// Sizes configuration
+var options = {
+  ranges: {
+    width: {
+      from: 400,
+      to: 1000,
+      step: 100
+    },
+    height: 600
+  }
+};
+
+// Prepare a headless browser for the URL you're interested in
+precompiler.open('http://example.net', function (err, page, phantom) {
+
+  // Create a version of the page with GSS converted to CSS media queries
+  precompiler.gss2css(page, options, function (err, html) {
+    // Serve or save the HTML string
+
+    // Then close down the headless browser
+    phantom.exit();
+  });
+
+});
+```
+
+See the [grunt sizes and ranges documentation](#optionssizes) on the sizing options to provide to the `gss2css` function.
+
 ## Grunt plugin
 
 ### Getting Started
@@ -63,6 +99,27 @@ Default value:
 ```
 
 A list of sizes to render the page in and generate media queries. Useful when the page is targeting a known set of display resolutions, as is often the case when building mobile web apps.
+
+##### options.ranges
+Type: `Object`
+Default value: `none`
+
+Ranges for width and height to utilize for producing the media queries. Allows compiling GSS into a set of responsive media queries. Overrides `options.sizes` when set.
+
+For example, to generate media queries for each screen size between 400x600 and 1400x600 in 20 pixel intervals, one could configure ranges with:
+
+```js
+ranges: {
+  width: {
+    from: 400,
+    to: 1400,
+    step: 20
+  },
+  height: 600
+}
+```
+
+Note that it is possible to configure ranges for both width and height, in which case all the size combinations will appear in the media queries.
 
 #### Usage examples
 In this example we'll build some local GSS-enabled HTML files into the equivalent CSS-powered ones. GSS and other dependencies are available in the local directory structure and the HTTP server is provided via grunt-contrib-connect. The files are stored in the `_site` folder:
