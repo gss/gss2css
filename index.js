@@ -64,7 +64,7 @@ exports.resize = function (page, values, callback) {
         if (err) {
           return callback(err);
         }
-        callback(null, page, vars);
+        callback(null, vars, page);
       });
     }, 100);
   });
@@ -209,7 +209,7 @@ exports.gss2css = function (page, options, callback) {
   var previous = null;
   var sizeToCss = function () {
     var size = options.sizes.shift();
-    exports.resize(page, size, function (err, page) {
+    exports.resize(page, size, function (err, vars) {
       page.evaluate(function () {
         return GSS.printCss();
       }, function (err, vals) {

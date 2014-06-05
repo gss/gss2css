@@ -29,7 +29,7 @@ describe 'communicating with a web page', ->
     lib.resize page,
       width: 800
       height: 600
-    , (err, page, result) ->
+    , (err, result) ->
       chai.expect(result).to.be.an 'object'
       chai.expect(result['::window[width]']).to.be.a 'number'
       chai.expect(result['$hello[width]']).to.equal 200
