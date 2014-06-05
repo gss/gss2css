@@ -18,7 +18,7 @@ describe 'communicating with a web page', ->
       done()
   it 'should be able to talk to GSS on the page', (done) ->
     page.evaluate ->
-      GSS.engines[0].vars
+      GSS.engines.root.vars
     , (err, result) ->
       chai.expect(result).to.be.an 'object'
       chai.expect(result['::window[width]']).to.be.a 'number'
@@ -29,15 +29,12 @@ describe 'communicating with a web page', ->
     lib.resize page,
       width: 800
       height: 600
-    , (err, page) ->
-      page.evaluate ->
-        GSS.engines[0].vars
-      , (err, result) ->
-        chai.expect(result).to.be.an 'object'
-        chai.expect(result['::window[width]']).to.be.a 'number'
-        chai.expect(result['$hello[width]']).to.equal 200
-        chai.expect(result['$hello[x]']).to.equal 292
-        done()
+    , (err, page, result) ->
+      chai.expect(result).to.be.an 'object'
+      chai.expect(result['::window[width]']).to.be.a 'number'
+      chai.expect(result['$hello[width]']).to.equal 200
+      chai.expect(result['$hello[x]']).to.equal 292
+      done()
   it 'should be able to remove GSS from page', (done) ->
     replacer = /[\n\s"']*/g
     expected = fs.readFileSync path.resolve(__dirname, 'fixtures/base/removed.html'), 'utf-8'

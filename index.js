@@ -58,7 +58,14 @@ exports.resize = function (page, values, callback) {
       return callback(err);
     }
     setTimeout(function () {
-      callback(null, page);
+      page.evaluate(function () {
+        return GSS.engines.root.vars;
+      }, function (err, vars) {
+        if (err) {
+          return callback(err);
+        }
+        callback(null, page, vars);
+      });
     }, 100);
   });
 };
