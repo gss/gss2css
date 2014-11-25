@@ -1,4 +1,4 @@
-GSS to CSS precompiler [![Build Status](https://travis-ci.org/the-gss/gss2css.png?branch=master)](https://travis-ci.org/the-gss/gss2css)
+GSS to CSS precompiler [![Build Status](https://travis-ci.org/gss/gss2css.png?branch=master)](https://travis-ci.org/gss/gss2css)
 ======================
 
 This project provides both a [Node.js](http://nodejs.org/) library and a [Grunt](http://gruntjs.com/) plugin for precompiling constraint-driven [GSS](http://gridstylesheets.org/) layouts to plain CSS.
